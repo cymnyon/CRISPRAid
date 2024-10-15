@@ -5,8 +5,8 @@
 You can install **CRISPRAid** using the following commands in R:
 
 ```R
-# Install devtools if you haven't already
+# Install devtools
 install.packages("devtools")
 
 # Install CRISPRAid from GitHub
-devtools::install_github("yourusername/CRISPRAid")
+devtools::install_github("username/CRISPRAid")
