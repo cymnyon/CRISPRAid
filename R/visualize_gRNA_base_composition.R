@@ -1,6 +1,12 @@
 #' Visualize gRNA Base Composition
 #'
-#' Generates a bar plot showing the base composition of a set of gRNA sequences.
+#' This function generates a bar plot displaying the base composition
+#' (A, T, G, C) of a set of guide RNA (gRNA) sequences. By summarizing
+#' the frequency of each base, this plot provides insights into the nucleotide
+#' makeup of the gRNA sequences, which can impact binding stability and efficiency.
+#' The output is a ggplot object, making it easy to customize or integrate into
+#' reports.
+#'
 #' @param gRNA_seqs A character vector of gRNA sequences.
 #' @return A ggplot object showing base composition.
 #' @export
