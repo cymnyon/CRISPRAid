@@ -34,7 +34,7 @@ visualize_gRNA_efficiency <- function(efficiency_data) {
       axis.ticks.y = element_blank(),
       axis.title.y = element_blank()
     )
-    scale_fill_gradient(low = "#90EE90", high "#006400", name = "Efficiency") +
+    scale_fill_gradient(low = "#90EE90", high = "#006400", name = "Efficiency") +
     labs(title = "Heatmap of gRNA Efficiency",
          x = "gRNA",
          y = "")
