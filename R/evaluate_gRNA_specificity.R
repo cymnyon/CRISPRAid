@@ -17,7 +17,7 @@ evaluate_gRNA_specificity <- function(gRNA_seq, off_target_seqs) {
     stop("The input gRNA_seq and target_seq are not in character string type")
   }
   if (length(gRNA_seq) != 1) {
-    stop("gRNA_seq is not a single character string")
+    stop("The input gRNA_seq is not a single character string")
   }
 
   # Calculate the similarity score for each of the given off_target_seqs

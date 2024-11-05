@@ -13,7 +13,7 @@
 visualize_gRNA_base_composition <- function(gRNA_seqs) {
   # Check if gRNA_seqs is character vector
   if (!is.character(gRNA_seqs)) {
-    stop("gRNA_seqs is not a character vector")
+    stop("The input gRNA_seqs is not a character vector")
   }
 
   # Gather all the sequences into a string

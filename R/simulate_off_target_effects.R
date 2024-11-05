@@ -16,13 +16,13 @@ simulate_off_target_effects <- function(gRNA_seq, genome_length, num_sites = 10)
   # Check if gRNA_seq is in a single character string and
   # genome_length and num_sites are character string type and positive integer
   if (!is.character(gRNA_seq) || !length(gRNA_seq) != 1) {
-    stop("gRNA_seq is not a single character string")
+    stop("The input gRNA_seq is not a single character string")
   }
   if (!is.numeric(genome_length) || genome_length <= 0) {
-    stop("genome_length is not a positive integer nor in character string type")
+    stop("The input genome_length is not a positive integer nor in character string type")
   }
   if (!is.numeric(num_sites) || num_sites <= 0) {
-    stop("num_sites is not a positive integer nor in character string type")
+    stop("The input num_sites is not a positive integer nor in character string type")
   }
 
   # Generate random positions for off-target sites within the genome length

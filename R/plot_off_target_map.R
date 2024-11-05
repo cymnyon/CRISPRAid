@@ -14,10 +14,10 @@
 plot_off_target_map <- function(off_target_data) {
   # Check if off_target_data is a data frame and in a correct format
   if (!is.data.frame(off_target_data)) {
-    stop("off_target_data is not a data frame")
+    stop("The input off_target_data is not a data frame")
   }
   if (!all(c("position", "effect_size") %in% names(off_target_data))) {
-    stop("off_target_data does not have columns 'position' and 'effect_size'")
+    stop("The input off_target_data does not have columns 'position' and 'effect_size'")
   }
 
   library(plotly)
