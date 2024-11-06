@@ -99,3 +99,8 @@ CRISPRAid was developed by Soomi Choi with the following contributions:
 
 10. Jiang, F., and Doudna, J.A. 2017. “CRISPR–Cas9 Structures and Mechanisms.” *Annual Review of Biophysics* 46: 505-529.
 
+## Acknowledgements
+
+CRISPRAid was developed as part of the Fall 2024 BCB410H1: Applied Bioinformatics course at the University of Toronto. Contributions and suggestions are welcome via GitHub issues.
+
+
