@@ -1,9 +1,8 @@
 Package: CRISPRAid
-Title: CRISPRAid: Comprehensive CRISPR-Cas9 Data Analysis Tool
+Title: Comprehensive CRISPR-Cas9 Data Analysis Tool
 Version: 0.1.0
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person("Soomi", "Choi", , "soomi.choi@mail.utoronto.ca", role = c("aut", "cre"))
 Description: Enhances CRISPR-Cas9 data analysis, including gRNA efficiency
     prediction, off-target analysis, and indel detection with
     visualization.
