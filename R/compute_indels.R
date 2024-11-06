@@ -13,10 +13,13 @@
 compute_indels <- function(seq_data, indel_thres = 0.1) {
   # Check if seq_data is in data frame format and has the required column
   if (!is.data.frame(seq_data)) {
-    stop("The input seq_data is not a data frame")
+    stop("The input seq_data is not a data frame with a column mutation_rate")
   }
   if (!"mutation_rate" %in% names(seq_data)) {
     stop("The input seq_data does not have a column 'mutation_rate'")
+  }
+  if (!is.numeric(seq_data$mutation_rate)) {
+    stop("The column mutation_rate in seq_data is not numeric")
   }
 
   #Check if indel_thres is a positive numeric type
@@ -25,7 +28,7 @@ compute_indels <- function(seq_data, indel_thres = 0.1) {
   }
 
   # Compute the number of indels and check that the mutation_rate exceeds indel_thres
-  indel_num <- sum(seq_data$mutation_rate > indel_thres, na.rm = TRUE)
+  indel_num <- as.integer(sum(seq_data$mutation_rate > indel_thres))
 
   # Create a data frame and return it
   result_df <- data.frame(indel_count = indel_num)

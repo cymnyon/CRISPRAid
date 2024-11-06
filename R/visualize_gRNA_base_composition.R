@@ -12,7 +12,7 @@
 #' @export
 visualize_gRNA_base_composition <- function(gRNA_seqs) {
   # Check if gRNA_seqs is character vector
-  if (!is.character(gRNA_seqs)) {
+  if (!is.character(gRNA_seqs) || any(!grepl("^[ATGC]*$", gRNA_seqs))) {
     stop("The input gRNA_seqs is not a character vector")
   }
 
@@ -22,19 +22,19 @@ visualize_gRNA_base_composition <- function(gRNA_seqs) {
 
   # Keep the count for each base
   base_count <- table(bases)
-  base_data_frame <- as.data.frame(base_count)
+  base_df <- as.data.frame(base_count)
 
-  colnames(base_data_frame) <- c("base", "frequency")
+  colnames(base_df) <- c("Base", "Count")
 
   library(ggplot2)
   # Create a plot and return it
-  plot_result <- ggplot(base_data_frame, aes(x = base, y = frequency, fill = base)) +
+  plot_result <- ggplot(base_df, aes(x = Base, y = Count, fill = Base)) +
     geom_bar(stat = "identity") +
     theme_minimal() +
-    scale_fill_manual(values = c("A" = "#FA8072", "T" = "#87CEEB", "G" = "#90EE90", "C" = "#FFA07A")) +
+    scale_fill_manual(values = c("A" = "#87CEEB", "T" = "#FA8072", "G" = "#90EE90", "C" = "#FFA07A")) +
     labs(title = "gRNA Base Composition",
          x = "Base",
-         y = "Frequency")
+         y = "Count")
 
   return(plot_result)
 }

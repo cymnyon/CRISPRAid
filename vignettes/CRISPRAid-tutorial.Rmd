@@ -7,13 +7,129 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+# Introduction
+
+`CRISPRAid` is an R package designed to streamline CRISPR-Cas9 data analysis, focusing on tasks such as guide RNA (gRNA) efficiency prediction, off-target analysis, and indel detection. This vignette provides an overview of the package’s main functions and includes examples for each.
+
+To get started, load the package:
 
 ```{r setup}
 library(CRISPRAid)
 ```
+
+# Analyzing gRNA Efficiency
+
+The analyze_gRNA_efficiency() function predicts the editing efficiency of a given gRNA sequence against a target DNA sequence. Here’s how to use it:
+
+```{r analyze_gRNA_efficiency_example}
+# Example gRNA and target DNA sequences
+gRNA_seq <- "GACGTCTAGT"
+target_seq <- "TGCTACGTAGT"
+
+# Analyze efficiency
+efficiency_result <- analyze_gRNA_efficiency(gRNA_seq, target_seq)
+print(efficiency_result)
+```
+
+# Visualizing gRNA Efficiency
+
+The visualize_gRNA_efficiency() function creates a heatmap for comparing gRNA efficiency across multiple sequences.
+
+```{r visualize_gRNA_efficiency_example}
+# Example data for multiple gRNA efficiencies
+efficiency_data <- data.frame(
+  gRNA = c("gRNA1", "gRNA2", "gRNA3"),
+  efficiency = c(80, 90, 75)
+)
+
+# Generate heatmap of gRNA efficiencies
+efficiency_plot <- visualize_gRNA_efficiency(efficiency_data)
+print(efficiency_plot)
+```
+
+# Evaluating gRNA Specificity
+
+The evaluate_gRNA_specificity() function calculates the specificity of a gRNA sequence by comparing it with a set of potential off-target sequences. This can help in identifying sequences that may lead to unintended edits.
+
+```{r evaluate_gRNA_specificity_example}
+# Example gRNA sequence and potential off-target sequences
+gRNA_seq <- "GACGTCTAGT"
+off_target_seqs <- c("GACGTCTTGT", "TGCATCTAGG", "GACGTGTAGT")
+
+# Evaluate specificity
+specificity_result <- evaluate_gRNA_specificity(gRNA_seq, off_target_seqs)
+print(specificity_result)
+```
+
+# Simulating Off-Target Effects in a Genome
+
+The simulate_off_target_effects() function simulates potential off-target binding sites across a genome. This is useful for preliminary analysis to estimate the likelihood of unintended edits.
+
+```{r simulate_off_target_effects_example}
+# Simulate off-target effects in a genome of length 1000 with 10 potential sites
+gRNA_seq <- "GACGTCTAGT"
+genome_length <- 1000
+num_sites <- 10
+
+off_target_simulation <- simulate_off_target_effects(gRNA_seq, genome_length, num_sites)
+print(off_target_simulation)
+```
+
+# Plotting Off-Target Effects
+
+The plot_off_target_map() function allows users to visualize off-target effects on the genome using an interactive plot. This is useful for identifying potential off-target binding sites.
+
+```{r plot_off_target_map_example}
+# Example data for off-target effects
+off_target_data <- data.frame(
+  position = seq(1, 100, by = 10),
+  effect_size = runif(10, min = 0, max = 1)
+)
+
+# Plot interactive map of off-target effects
+off_target_plot <- plot_off_target_map(off_target_data)
+off_target_plot
+```
+
+# Visualizing Base Composition of gRNA Sequences
+
+The visualize_gRNA_base_composition() function generates a bar plot showing the base composition (A, T, G, C) of a set of gRNA sequences. This can provide insight into the stability and characteristics of the sequences.
+
+```{r visualize_gRNA_base_composition_example}
+# Example set of gRNA sequences
+gRNA_seqs <- c("GACGTCTAGT", "TGCATCTAGG", "GACGTGTAGT")
+
+# Generate base composition plot
+base_composition_plot <- visualize_gRNA_base_composition(gRNA_seqs)
+print(base_composition_plot)
+```
+
+# Computing Indels
+
+The compute_indels() function calculates indel frequencies from sequencing data, based on a user-defined threshold.
+
+```{r compute_indels_example}
+# Example sequencing data with mutation rates
+seq_data <- data.frame(
+  mutation_rate = c(0.05, 0.2, 0.15, 0.01, 0.3)
+)
+
+# Compute indels with a threshold of 0.1
+indel_result <- compute_indels(seq_data, indel_thres = 0.1)
+print(indel_result)
+```
+
+# Conclusion
+
+This vignette provides an overview of the main functions in CRISPRAid package:
+- gRNA efficiency prediction (analyze_gRNA_efficiency)
+- gRNA efficiency visualization (visualize_gRNA_efficiency)
+- specificity analysis (evaluate_gRNA_specificity)
+- off-target effect simulation (simulate_off_target_effects)
+- off-target effect visualization (plot_off_target_map)
+- base composition visualization (visualize_gRNA_base_composition)
+- indel frequency computation (compute_indels)
+
+
+
+

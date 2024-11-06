@@ -14,13 +14,13 @@ test_check("CRISPRAid")
 # tests/testthat/test-analyze_gRNA_efficiency.R
 
 test_that("analyze_gRNA_efficiency returns a data frame", {
-  result <- analyze_gRNA_efficiency("GACGTCTAGT", "TGCTACGTAG")
+  result <- analyze_gRNA_efficiency("GACGTCTAGT", "GACGTCTAGT")
   expect_s3_class(result, "data.frame")
-  expect_named(result, c("gRNA", "efficiency"))
+  expect_named(result, c("gRNA", "target", "gc_content", "similarity_score", "predicted_efficiency"))
 })
 
 test_that("analyze_gRNA_efficiency handles invalid inputs", {
-  expect_error(analyze_gRNA_efficiency(NULL, "TGCTACGTAG"))
+  expect_error(analyze_gRNA_efficiency(NULL, "TGCTACGTAGT"))
   expect_error(analyze_gRNA_efficiency("GACGTCTAGT", NULL))
 })
 
@@ -48,8 +48,9 @@ test_that("plot_off_target_map returns a plotly object", {
 
 test_that("plot_off_target_map throws an error with invalid data", {
   expect_error(plot_off_target_map(NULL), "data frame")
-  expect_error(plot_off_target_map(data.frame(position = 1:10, effect_size = letters[1:10])),
-               "numeric")
+  expect_error(plot_off_target_map(data.frame(position = 1:10,
+                                              effect_size = letters[1:10])),
+               "The column effect_size of off_target_data is not numeric")
 })
 
 # tests/testthat/test-compute_indels.R
@@ -59,7 +60,7 @@ test_that("compute_indels returns a data frame with indel counts", {
   result <- compute_indels(seq_data, indel_thres = 0.1)
   expect_s3_class(result, "data.frame")
   expect_named(result, "indel_count")
-  expect_type(result$indel_count, "double")
+  expect_type(result$indel_count, "integer")
 })
 
 test_that("compute_indels correctly counts indels above threshold", {
@@ -111,7 +112,8 @@ test_that("simulate_off_target_effects returns a data frame with correct columns
 
   expect_s3_class(result, "data.frame")
   expect_named(result, c("position", "effect_size"))
-  expect_type(result$position, "double")
+
+  expect_type(result$position, "integer")
   expect_type(result$effect_size, "double")
 })
 
@@ -126,8 +128,12 @@ test_that("simulate_off_target_effects generates correct number of off-target si
 })
 
 test_that("simulate_off_target_effects handles invalid inputs", {
-  expect_error(simulate_off_target_effects("GACGTCTAGT", -100))
-  expect_error(simulate_off_target_effects("GACGTCTAGT", 1000, -5))
+  expect_error(simulate_off_target_effects("GACGTCTAGT", -100),
+               "The input genome_length is not a positive integer nor in character string type")
+  expect_error(simulate_off_target_effects("GACGTCTAGT", 1000, -5),
+               "The input num_sites is not a positive integer nor in character string type")
+  expect_error(simulate_off_target_effects(c("GACGTCTAGT", "TGCATCTAGG"), 1000, 5),
+               "The input gRNA_seq is not a single character string")
 })
 
 # tests/testthat/test-visualize_gRNA_base_composition.R
@@ -142,7 +148,8 @@ test_that("visualize_gRNA_base_composition returns a ggplot object", {
 
 test_that("visualize_gRNA_base_composition handles invalid inputs", {
   expect_error(visualize_gRNA_base_composition(NULL))
-  expect_error(visualize_gRNA_base_composition(c("GACGTCTAGT", "12345")))
+  expect_error(visualize_gRNA_base_composition(c("GACGTCTAGT", 12345)),
+               "All elements in gRNA_seqs are not character strings")
 })
 
 

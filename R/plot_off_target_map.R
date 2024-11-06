@@ -20,6 +20,11 @@ plot_off_target_map <- function(off_target_data) {
     stop("The input off_target_data does not have columns 'position' and 'effect_size'")
   }
 
+  # Check if the column effect_size of off_target_data is numeric type
+  if (!is.numeric(off_target_data$effect_size)) {
+    stop("The column effect_size of off_target_data is not numeric")
+  }
+
   library(plotly)
   # Create a plot of off-target effects and return it
   plot_result <- plot_ly(

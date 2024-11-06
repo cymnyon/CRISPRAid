@@ -25,20 +25,19 @@ visualize_gRNA_efficiency <- function(efficiency_data) {
   }
 
   library(ggplot2)
-  library(ggplot)
   # Create a heatmap plot and return it
   plot_result <- ggplot(efficiency_data, aes(x = gRNA, y = 1, fill = efficiency)) +
     geom_tile(color = "#FFFFFF") +
+    scale_fill_gradient(low = "#90EE90", high = "#006400", name = "Efficiency") +
+    labs(title = "Heatmap of gRNA Efficiency",
+         x = "gRNA",
+         y = "") +
     theme_minimal() +
     theme(
       axis.text.y = element_blank(),
       axis.ticks.y = element_blank(),
       axis.title.y = element_blank()
     )
-    scale_fill_gradient(low = "#90EE90", high = "#006400", name = "Efficiency") +
-    labs(title = "Heatmap of gRNA Efficiency",
-         x = "gRNA",
-         y = "")
 
     return(plot_result)
 }
