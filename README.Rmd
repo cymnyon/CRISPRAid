@@ -90,7 +90,7 @@ Generative AI tool (ChatGPT) was used to assist with:
 
 - Structuring function logic for `analyze_gRNA_efficiency` and `evaluate_gRNA_specificity`
 
-- Generating comments within functions to clarify their purposes
+- Generating comments and simple examples within functions to clarify their purposes
 
 - Debugging errors within development of the functions
 
