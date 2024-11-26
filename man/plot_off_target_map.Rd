@@ -13,5 +13,11 @@ plot_off_target_map(off_target_data)
 A plotly object for interactive exploration.
 }
 \description{
-Creates an interactive map of off-target effects across the genome.
+This function creates an interactive plot showing the positions and
+effect sizes of potential off-target binding sites across a genome.
+The plot provides an easy-to-navigate visualization, allowing users
+to explore regions of the genome where off-target effects may occur,
+with effect sizes representing the likelihood or intensity of off-target
+binding. This can help researchers identify critical areas for further
+analysis.
 }

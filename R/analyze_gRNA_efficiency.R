@@ -13,6 +13,11 @@
 #' @param model A model object (optional) for prediction.
 #' @return A data frame with columns for gRNA sequence and predicted efficiency.
 #' @export
+#' @importFrom stats predict
+#' @examples
+#' gRNA_seq <- "GACGTCTAGT"
+#' target_seq <- "GACGTCTAGT"
+#' analyze_gRNA_efficiency(gRNA_seq, target_seq)
 analyze_gRNA_efficiency <- function(gRNA_seq, target_seq, model = NULL) {
   # Check if gRNA_seq and target_seq are character strings
   if (!is.character(gRNA_seq) || !is.character(target_seq)) {

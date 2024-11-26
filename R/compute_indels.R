@@ -10,6 +10,11 @@
 #' @param indel_thres Numeric threshold for identifying indels.
 #' @return A data frame with indel counts.
 #' @export
+#' @examples
+#' seq_data <- data.frame(
+#'   mutation_rate = c(0.05, 0.2, 0.15, 0.01, 0.3)
+#' )
+#' compute_indels(seq_data, indel_thres = 0.1)
 compute_indels <- function(seq_data, indel_thres = 0.1) {
   # Check if seq_data is in data frame format and has the required column
   if (!is.data.frame(seq_data)) {

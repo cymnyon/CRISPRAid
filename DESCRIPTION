@@ -1,18 +1,26 @@
 Package: CRISPRAid
+Type: Package
 Title: Comprehensive CRISPR-Cas9 Data Analysis Tool
 Version: 0.1.0
 Authors@R: 
     person("Soomi", "Choi", , "soomi.choi@mail.utoronto.ca", role = c("aut", "cre"))
+Maintainer: Soomi Choi <soomi.choi@mail.utoronto.ca>
 Description: Enhances CRISPR-Cas9 data analysis, including gRNA efficiency
-    prediction, off-target analysis, and indel detection with
-    visualization.
+    prediction, off-target analysis, indel detection, and visualization tools 
+    to support CRISPR experiments.
 License: MIT + file LICENSE
+Depends: R (>= 4.0.0)
 Encoding: UTF-8
-Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+URL: https://github.com/cymnyon/CRISPRAid
+Imports:
+    ggplot2,
+    plotly,
+    stats,
+    magrittr
 Suggests: 
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
-Config/testthat/edition: 3
 VignetteBuilder: knitr

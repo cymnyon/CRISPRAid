@@ -13,5 +13,10 @@ visualize_gRNA_efficiency(efficiency_data)
 A ggplot object displaying the heatmap.
 }
 \description{
-Creates a heatmap for gRNA efficiency comparisons.
+This function creates a heatmap to visually compare the efficiency
+of multiple guide RNA (gRNA) sequences. Each gRNA is represented
+with an efficiency score, and the heatmap provides a quick visual assessment
+of high and low efficiency sequences, aiding in the selection
+of optimal gRNAs for experiments. The output is a ggplot object,
+making it easy to customize or integrate into reports.
 }

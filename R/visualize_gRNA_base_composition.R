@@ -10,6 +10,10 @@
 #' @param gRNA_seqs A character vector of gRNA sequences.
 #' @return A ggplot object showing base composition.
 #' @export
+#' @import ggplot2
+#' @examples
+#' gRNA_seqs <- c("GACGTCTAGT", "TGCATCTAGG", "GACGTGTAGT")
+#' visualize_gRNA_base_composition(gRNA_seqs)
 visualize_gRNA_base_composition <- function(gRNA_seqs) {
   # Check if gRNA_seqs is character vector
   if (!is.character(gRNA_seqs) || any(!grepl("^[ATGC]*$", gRNA_seqs))) {
@@ -26,13 +30,13 @@ visualize_gRNA_base_composition <- function(gRNA_seqs) {
 
   colnames(base_df) <- c("Base", "Count")
 
-  library(ggplot2)
   # Create a plot and return it
-  plot_result <- ggplot(base_df, aes(x = Base, y = Count, fill = Base)) +
-    geom_bar(stat = "identity") +
-    theme_minimal() +
-    scale_fill_manual(values = c("A" = "#87CEEB", "T" = "#FA8072", "G" = "#90EE90", "C" = "#FFA07A")) +
-    labs(title = "gRNA Base Composition",
+  plot_result <- ggplot2::ggplot(base_df,
+                                 ggplot2::aes(x = Base, y = Count, fill = Base)) +
+    ggplot2::geom_bar(stat = "identity") +
+    ggplot2::theme_minimal() +
+    ggplot2::scale_fill_manual(values = c("A" = "#87CEEB", "T" = "#FA8072", "G" = "#90EE90", "C" = "#FFA07A")) +
+    ggplot2::labs(title = "gRNA Base Composition",
          x = "Base",
          y = "Count")
 

@@ -10,7 +10,16 @@
 #'
 #' @param off_target_data Data frame with information on off-target sites.
 #' @return A plotly object for interactive exploration.
+#' @importFrom plotly plot_ly
+#' @importFrom graphics layout
+#' @importFrom magrittr %>%
 #' @export
+#' @examples
+#' off_target_data <- data.frame(
+#'   position = seq(1, 100, by = 10),
+#'   effect_size = runif(10, min = 0, max = 1)
+#' )
+#' plot_off_target_map(off_target_data)
 plot_off_target_map <- function(off_target_data) {
   # Check if off_target_data is a data frame and in a correct format
   if (!is.data.frame(off_target_data)) {
@@ -25,18 +34,16 @@ plot_off_target_map <- function(off_target_data) {
     stop("The column effect_size of off_target_data is not numeric")
   }
 
-  library(plotly)
   # Create a plot of off-target effects and return it
-  plot_result <- plot_ly(
+  plot_result <- plotly::plot_ly(
     off_target_data,
     x = ~position,
     y = ~effect_size,
     type = 'scatter',
     mode = 'markers',
-    marker = list(size = 8, color = ~effect_size, colorscale = 'Viridis', showscale = TRUE),
-    text = ~paste("Position: ", position, "<br>Effect Size: ", round(effect_size, 2))
+    marker = list(size = 8, color = ~effect_size, colorscale = 'Viridis', showscale = TRUE)
   ) %>%
-    layout(
+    plotly::layout(
       title = "Map of Off-Target Effects",
       xaxis = list(title = "Genomic Position"),
       yaxis = list(title = "Effect Size"),

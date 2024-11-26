@@ -30,3 +30,10 @@ test_that("simulate_off_target_effects handles invalid inputs", {
   expect_error(simulate_off_target_effects(c("GACGTCTAGT", "TGCATCTAGG"), 1000, 5),
                "The input gRNA_seq is not a single character string")
 })
+
+test_that("simulate_off_target_effects generates expected data", {
+  simulate_data <- read.csv(system.file("extdata", "simulate_off_target_effects.csv", package = "CRISPRAid"))
+  expect_true(nrow(simulate_data) == 10)
+  expect_true(all(simulate_data$position > 0))
+  expect_true(all(simulate_data$effect_size >= 0 & simulate_data$effect_size <= 1))
+})

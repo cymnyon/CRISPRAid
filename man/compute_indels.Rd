@@ -15,5 +15,9 @@ compute_indels(seq_data, indel_thres = 0.1)
 A data frame with indel counts.
 }
 \description{
-Calculates indel frequencies from sequencing data.
+This function calculates the frequency of insertions and deletions (indels)
+in sequencing data based on a specified threshold. Indels are identified
+when the mutation rate at a given position exceeds the threshold,
+helping researchers quantify mutation prevalence. The output is a data frame
+summarizing the total count of indels detected.
 }

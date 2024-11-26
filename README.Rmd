@@ -24,83 +24,102 @@ The package was developed using R version 4.3.1 and has been optimized to work e
 
 ## Installation
 
-You can install the development version of CRISPRAid from [GitHub](https://github.com/) with:
+To install the latest version of the package:
 
 ``` r
-# install.packages("pak")
-pak::pak("cymnyon/CRISPRAid")
+require("devtools")
+install_github("cymnyon/CRISPRAid", build_vignettes = TRUE)
+library("CRISPRAid")
+```
+
+To run the Shiny app:
+``` r
+CRISPRAid::runCRISPRAid()
 ```
 
 ## Overview
 
+To list all functions available in the package:
+``` r
+ls("package:CRISPRAid")
+```
+
 CRISPRAid includes the following functions:
 
-- **analyze_gRNA_efficiency**: Computes the efficiency of gRNA sequences, helping determine their suitability for targeting.
-- **evaluate_gRNA_specificity**: Assesses gRNA specificity against target sequences to reduce off-target effects.
-- **compute_indels**: Calculates the frequency of indels in sequencing data, aiding in mutation rate analysis.
-- **simulate_off_target_effects**: Simulates potential off-target binding across a genome, providing a risk profile for each gRNA.
-- **visualize_gRNA_efficiency**: Generates a heatmap of gRNA efficiencies for visual comparison.
-- **visualize_gRNA_base_composition**: Creates a bar plot to display nucleotide composition (A, T, G, C) of gRNA sequences.
-- **plot_off_target_map**: Maps predicted off-target sites across a genome, offering insights into binding distribution.
+1. `analyze_gRNA_efficiency` for computing the efficiency of gRNA sequences, helping determine their suitability for targeting.
+
+2. `evaluate_gRNA_specificity` for assessing gRNA specificity against target sequences to reduce off-target effects.
+
+3. `compute_indels` for calculating the frequency of indels in sequencing data, aiding in mutation rate analysis.
+
+4. `simulate_off_target_effects` for simulating potential off-target binding across a genome, providing a risk profile for each gRNA.
+
+5. `visualize_gRNA_efficiency` for generating a heatmap of gRNA efficiencies for visual comparison.
+
+6. `visualize_gRNA_base_composition` for creating a bar plot to display nucleotide composition (A, T, G, C) of gRNA sequences.
+
+7. `plot_off_target_map` for mapping predicted off-target sites across a genome, offering insights into binding distribution.
 
 ### Workflow Diagram
 
 ![CRISPRAid Workflow Diagram](man/figures/CRISPRAid.png)
 
-## Example Usage
-
-Here’s a basic example demonstrating CRISPRAid’s functionality. Load the package and use some of the core functions:
-
-```{r}
-# Load CRISPRAid in development mode
-if (requireNamespace("devtools", quietly = TRUE)) {
-  devtools::load_all(".")
-} else {
-  message("Please install the 'devtools' package to load CRISPRAid in development mode.")
-}
-
-# Example of computing gRNA efficiency
-efficiency_result <- analyze_gRNA_efficiency("GACGTCTAGT", "TGCTACGTAG")
-
-# Example of visualizing base composition
-gRNA_seqs <- c("GACGTCTAGT", "TGCATCTAGG", "GACGTGTAGT")
-visualize_gRNA_base_composition(gRNA_seqs)
-```
-
 ## Contributions
 
-CRISPRAid was developed by Soomi Choi with the following contributions:
+The author of the package is **Soomi Choi**. The author conceptualized and developed CRISPRAid to facilitate the analysis of CRISPR-Cas9 guide RNA data. Below is a breakdown of the author's contributions and external influences for each function:
 
-- **analyze_gRNA_efficiency**: Authored by Soomi Choi using R’s built-in error handling and control structures to ensure efficient gRNA performance analysis.
-- **evaluate_gRNA_specificity**: Developed to quantify gRNA accuracy by reducing off-target effects; inspiration was drawn from off-target analysis techniques in CRISPR research.
-- **compute_indels**: Written to calculate indel frequencies, this function validates inputs carefully, based on the author’s original logic.
-- **simulate_off_target_effects**: Built to model potential off-target sites using random sampling; Soomi Choi implemented the simulation logic with R’s random number generation functions.
-- **Visualization Functions**: Each visualization function was designed by Soomi Choi to ensure that CRISPR data analysis outputs are clear and easily interpretable.
+**Core Functions**
+
+- `analyze_gRNA_efficiency` was developed by the author to compute the efficiency of gRNA sequences. Inspired by off-target modeling techniques in CRISPR research.
+
+- `evaluate_gRNA_specificity` was designed by author to assess gRNA specificity, reducing off-target effects. This function relies on **Biostrings** for sequence handling and mismatch evaluation.
+
+- `compute_indels` was designed by author to calculate indel frequencies from sequencing data.
+
+- `simulate_off_target_effects` was written to simulate potential off-target sites across a genome using random sampling and probability models. Inspired by methods in the **CRISPRseek** package.
+
+**Visualization Functions**
+
+- `visualize_gRNA_base_composition` was written to generate bar plots of nucleotide composition for gRNA sequences. Built using **ggplot2** for visualization.
+
+- `visualize_gRNA_efficiency`. was developed to create heatmaps for visual comparison of gRNA efficiency. Relies on **ggplot2** for clear and customizable visual output.
+
+- `plot_off_target_map` was developed to map predicted off-target sites across a genome. Built using **plotly** as well for visuals.
+
+Generative AI tool (ChatGPT) was used to assist with:
+
+- Structuring function logic for `analyze_gRNA_efficiency` and `evaluate_gRNA_specificity`
+
+- Generating comments within functions to clarify their purposes
+
+- Debugging errors within development of the functions
 
 ## References
 
-1. Zhu, L.J., Gazin, C., Lawson, N.D., Pagès, H., Lin, S.M., Lapointe, D.S., and Green, M.R. 2014. “CRISPRseek: a Bioconductor package to identify off-targets of guide RNAs generated by CRISPR-Cas9 technology.” *BMC Bioinformatics* 15 (1): 142. [https://bioconductor.org/packages/CRISPRseek/](https://bioconductor.org/packages/CRISPRseek/).
+- R Core Team. 2023. *R: A language and environment for statistical computing.* R Foundation for Statistical Computing, Vienna, Austria. URL https://www.R-project.org/.
 
-2. Pagès, H., Aboyoun, P., Gentleman, R., and DebRoy, S. 2023. *Biostrings: Efficient manipulation of biological strings.* R package version 2.69.2, Bioconductor. [https://bioconductor.org/packages/Biostrings/](https://bioconductor.org/packages/Biostrings/).
+- Wickham, H. 2016. *ggplot2: Elegant Graphics for Data Analysis.* Springer-Verlag New York. URL https://ggplot2.tidyverse.org.
 
-3. Jinek, M., Chylinski, K., Fonfara, I., Hauer, M., Doudna, J.A., and Charpentier, E. 2012. “A programmable dual-RNA–guided DNA endonuclease in adaptive bacterial immunity.” *Science* 337 (6096): 816-821.
+- Zhu, L.J., Gazin, C., Lawson, N.D., Pagès, H., Lin, S.M., Lapointe, D.S., and Green, M.R. 2014. “CRISPRseek: a Bioconductor package to identify off-targets of guide RNAs generated by CRISPR-Cas9 technology.” *BMC Bioinformatics* 15 (1): 142. [https://bioconductor.org/packages/CRISPRseek/](https://bioconductor.org/packages/CRISPRseek/).
 
-4. Hsu, P.D., Lander, E.S., and Zhang, F. 2014. “DNA targeting specificity of RNA-guided Cas9 nucleases.” *Nature Biotechnology* 31 (9): 827-832.
+- Pagès, H., Aboyoun, P., Gentleman, R., and DebRoy, S. 2023. *Biostrings: Efficient manipulation of biological strings.* R package version 2.69.2, Bioconductor. [https://bioconductor.org/packages/Biostrings/](https://bioconductor.org/packages/Biostrings/).
 
-5. Fu, Y., Foden, J.A., Khayter, C., Maeder, M.L., Reyon, D., Joung, J.K., and Sander, J.D. 2013. “High-frequency off-target mutagenesis induced by CRISPR-Cas nucleases in human cells.” *Nature Biotechnology* 31 (9): 822-826.
+- Jinek, M., Chylinski, K., Fonfara, I., Hauer, M., Doudna, J.A., and Charpentier, E. 2012. “A programmable dual-RNA–guided DNA endonuclease in adaptive bacterial immunity.” *Science* 337 (6096): 816-821.
 
-6. Doench, J.G., Fusi, N., Sullender, M., Hegde, M., Vaimberg, E.W., Donovan, K.F., Smith, I., et al. 2016. “Optimized sgRNA design to maximize activity and minimize off-target effects of CRISPR-Cas9.” *Nature Biotechnology* 34 (2): 184-191.
+- Hsu, P.D., Lander, E.S., and Zhang, F. 2014. “DNA targeting specificity of RNA-guided Cas9 nucleases.” *Nature Biotechnology* 31 (9): 827-832.
 
-7. crisprVerse. “crisprBase: An R Package for Comprehensive CRISPR-Cas gRNA Analysis.” 2023. [https://github.com/crisprVerse/crisprBase](https://github.com/crisprVerse/crisprBase).
+- Fu, Y., Foden, J.A., Khayter, C., Maeder, M.L., Reyon, D., Joung, J.K., and Sander, J.D. 2013. “High-frequency off-target mutagenesis induced by CRISPR-Cas nucleases in human cells.” *Nature Biotechnology* 31 (9): 822-826.
 
-8. Bioinformatics Core, University of Michigan. “CRISPR-Cas9 Off-Target Prediction Tool.” 2023. [https://github.com/umich-brcf-bioinf/CRISPR-Cas9-Off-Target-Prediction-Tool](https://github.com/umich-brcf-bioinf/CRISPR-Cas9-Off-Target-Prediction-Tool).
+- Doench, J.G., Fusi, N., Sullender, M., Hegde, M., Vaimberg, E.W., Donovan, K.F., Smith, I., et al. 2016. “Optimized sgRNA design to maximize activity and minimize off-target effects of CRISPR-Cas9.” *Nature Biotechnology* 34 (2): 184-191.
 
-9. Zhu, W., Zhong, X., Xu, M., Hu, L., and Zhang, L. 2020. “Analysis and visualization of CRISPR-Cas9 editing outcomes and assessment of potential off-targets with CRISPResso2.” *Nature Protocols* 15 (2): 325-347.
+- Jiang, F., and Doudna, J.A. 2017. “CRISPR–Cas9 Structures and Mechanisms.” *Annual Review of Biophysics* 46: 505-529.
 
-10. Jiang, F., and Doudna, J.A. 2017. “CRISPR–Cas9 Structures and Mechanisms.” *Annual Review of Biophysics* 46: 505-529.
+- Silva A. (2019). GitHub - anjalisilva/TestingPackage: R Package Illustrating Components of an R package for BCB410H - Applied Bioinformatics (2019-2023), University of Toronto, Canada. GitHub. https://github.com/anjalisilva/TestingPackage
+
+- OpenAI. (2024). *ChatGPT (Version 3.5)*. Retrieved from https://chat.openai.com/chat
 
 ## Acknowledgements
 
-CRISPRAid was developed as part of the Fall 2024 BCB410H1: Applied Bioinformatics course at the University of Toronto. Contributions and suggestions are welcome via GitHub issues.
+This package was developed as part of an assessment for 2024 BCB410H: Applied Bioinformatics course at the University of Toronto, Toronto, CANADA. CRISPRAid welcomes issues, enhancement requests, and other contributions. To subit an issue, use the GitHub issues.
 
 

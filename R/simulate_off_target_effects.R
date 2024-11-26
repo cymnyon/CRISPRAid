@@ -12,6 +12,10 @@
 #' @param num_sites The number of potential off-target sites to simulate.
 #' @return A data frame with positions and effect sizes for simulated off-target sites.
 #' @export
+#' @importFrom stats runif
+#' @examples
+#' gRNA_seq <- "GACGTCTAGT"
+#' simulate_off_target_effects(gRNA_seq, genome_length = 1000, num_sites = 10)
 simulate_off_target_effects <- function(gRNA_seq, genome_length, num_sites = 10) {
   # Check if gRNA_seq is in a single character string and
   # genome_length and num_sites are character string type and positive integer

@@ -17,5 +17,11 @@ analyze_gRNA_efficiency(gRNA_seq, target_seq, model = NULL)
 A data frame with columns for gRNA sequence and predicted efficiency.
 }
 \description{
-Predicts editing efficiency for a given guide RNA sequence.
+This function predicts the editing efficiency of a specified guide RNA (gRNA)
+sequence against a target DNA sequence, providing insight into the likelihood
+of successful CRISPR editing at the target site. Efficiency is calculated
+based on sequence properties, such as GC content and sequence similarity,
+or by using a provided predictive model. The output includes the gRNA sequence,
+target sequence, and a predicted efficiency score, which can guide researchers
+in selecting optimal gRNA candidates.
 }

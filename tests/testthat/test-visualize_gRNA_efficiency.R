@@ -9,3 +9,9 @@ test_that("visualize_gRNA_efficiency throws an error with invalid data", {
   expect_error(visualize_gRNA_efficiency(data.frame(gRNA = c("gRNA1"), efficiency = c("high"))),
                "numeric")
 })
+
+test_that("visualize_gRNA_efficiency works with gRNA_efficiency_data.csv", {
+  efficiency_data <- read.csv(system.file("extdata", "gRNA_efficiency_data.csv", package = "CRISPRAid"))
+  plot <- visualize_gRNA_efficiency(efficiency_data)
+  expect_s3_class(plot, "ggplot")
+})

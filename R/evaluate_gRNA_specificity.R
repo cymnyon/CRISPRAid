@@ -10,6 +10,10 @@
 #' @param off_target_seqs A character vector of potential off-target sequences.
 #' @return A data frame with off-target sequences and their similarity scores.
 #' @export
+#' @examples
+#' gRNA_seq <- "GACGTCTAGT"
+#' off_target_seqs <- c("GACGTCTTGT", "TGCATCTAGG", "GACGTGTAGT")
+#' evaluate_gRNA_specificity(gRNA_seq, off_target_seqs)
 evaluate_gRNA_specificity <- function(gRNA_seq, off_target_seqs) {
   # Check if gRNA_seq is in a single character string and
   # off_target_seqs is in character string type
